@@ -4,9 +4,6 @@ from tkinter import messagebox
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 matplotlib.use("TkAgg")
 
 main_win = Tk()
@@ -27,7 +24,7 @@ lb3.place(x=0, y=380)
 
 
 def formalities():
-    plt.xlabel("x")
+    plt.xlabel("x axis")
     plt.grid(True, which='both')
     plt.axhline(y=0, color='#FF7F00')
     plt.axvline(x=0, color='#FF7F00')
@@ -40,10 +37,10 @@ def formalities():
 
 def trigono():
     win2 = Tk()
-    win2.title('Trigonometric Graphs')
     win2.geometry('300x300')
+    win2.title('Trigonometric Graphs')
     win2.wm_iconbitmap('images\\trig.ico')
-    values = ["sin(x)", 'cos(x)', 'tan(x)', 'cosec(x)', 'sec(x)', 'cot(x)']
+    values = ["sin(x)", 'cos(x)', 'tan(x)', 'cot(x)', 'sec(x)', 'cosec(x)']
 
     def select(event=None):
 
@@ -156,8 +153,10 @@ def pysco():
     win4 = Tk()
     win4.title('Other Graphs')
     win4.geometry('300x300')
-    buti = Label(win4, text="Sorry!", font=30).pack()
-    buti2 = Label(win4, text="Currently under Development.").pack()
+    buti = Label(win4, text="Sorry!", font=30)\
+    buti.pack()
+    buti2 = Label(win4, text="Currently under Development.")\
+    buti2.pack()
     win4.mainloop()
 
 
