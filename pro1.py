@@ -153,9 +153,9 @@ def pysco():
     win4 = Tk()
     win4.title('Other Graphs')
     win4.geometry('300x300')
-    buti = Label(win4, text="Sorry!", font=30)\
+    buti = Label(win4, text="Sorry!", font=30)
     buti.pack()
-    buti2 = Label(win4, text="Currently under Development.")\
+    buti2 = Label(win4, text="Currently under Development.")
     buti2.pack()
     win4.mainloop()
 
