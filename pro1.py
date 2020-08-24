@@ -1,7 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+import numpy as np
 import matplotlib
+import matplotlib.pyplot as plt
+
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 matplotlib.use("TkAgg")
@@ -23,16 +26,73 @@ lb3 = Label(main_win, text='Created with  😁  & </> by 👨🏻‍💻', fg='d
 lb3.place(x=0, y=380)
 
 
+def formalities():
+    plt.xlabel("x")
+    plt.grid(True, which='both')
+    plt.axhline(y=0, color='#FF7F00')
+    plt.axvline(x=0, color='#FF7F00')
+    radian_multiples = [-2, -3 / 2, -1, -1 / 2, 0, 1 / 2, 1, 3 / 2, 2]
+    radians = [n * np.pi for n in radian_multiples]
+    radian_labels = ['$-2\pi$', '$-3\pi/2$', '$\pi$', '$-\pi/2$', '0', '$\pi/2$', '$\pi$', '$3\pi/2$', '$2\pi$']
+    plt.xticks(radians, radian_labels)
+    plt.show()
+
+
 def trigono():
     win2 = Tk()
     win2.title('Trigonometric Graphs')
     win2.geometry('300x300')
     win2.wm_iconbitmap('images\\trig.ico')
+    values = ["sin(x)", 'cos(x)', 'tan(x)', 'cosec(x)', 'sec(x)', 'cot(x)']
 
     def select(event=None):
-        l2.config(text='The graph of ' + cb.get() + ' is')
 
-    li = Label(win2, text='Select the function for which you want graph:')
+        def sine():
+            plt.ylabel("$sin(x)$")
+            x = np.arange(-2*np.pi, 2*np.pi, 0.01)
+            y = np.sin(x)
+            plt.plot(x, y)
+            plt.title('Sin(x)')
+            formalities()
+
+        def cosine():
+            plt.ylabel("$cos(x)$")
+            x = np.arange(-2*np.pi, 2*np.pi, 0.01)
+            y = np.cos(x)
+            plt.plot(x, y)
+            plt.title('Cos(x)')
+            formalities()
+
+        def tangent():
+            plt.ylabel("$tan(x)$")
+            x = np.arange(-2 * np.pi, 2 * np.pi, 0.1)
+            y = np.tan(x)
+            y[:-1][np.diff(y) < 0] = np.nan
+            plt.ylim(-3, 3)
+            plt.plot(x, y)
+            plt.title('Tan(x)')
+            formalities()
+
+        def cotangent():
+            plt.ylabel("$cot(x)$")
+            x = np.arange(-2 * np.pi, 2 * np.pi, 0.1)
+            y = 1 / (np.tan(x))
+            y[:-1][np.diff(y) > 0] = np.nan
+            plt.ylim(-3, 3)
+            plt.plot(x, y)
+            plt.title('Cot(x)')
+            formalities()
+
+        if cb.get() == values[0]:
+            sine()
+        elif cb.get() == values[1]:
+            cosine()
+        elif cb.get() == values[2]:
+            tangent()
+        elif cb.get() == values[3]:
+            cotangent()
+
+    li = Label(win2, text='Select the function for\nwhich you want graph:', font=('Cooper Black', 12))
     li.place(x=5, y=10)
     l2 = Label(win2, text='')
     l2.place(x=5, y=50)
@@ -42,11 +102,10 @@ def trigono():
               foreground=[('pressed', 'red'), ('active', 'blue')],
               background=[('pressed', '!disabled', 'black'), ('active', 'white')])
     bc = ttk.Button(win2, text="Click Here", style="C.TButton", command=select)
-    bc.place(x=200, y=30)
+    bc.place(x=200, y=50)
 
-    values = ["sin(x)", 'cos(x)', 'tan(x)', 'cosec(x)', 'sec(x)', 'cot(x)']
     cb = ttk.Combobox(win2, values=values, width=10)
-    cb.place(x=10, y=30)
+    cb.place(x=10, y=50)
     cb.current(0)
 
     win2.bind('<Return>', select)
