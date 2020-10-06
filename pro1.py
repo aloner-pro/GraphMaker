@@ -125,7 +125,9 @@ def poly_act():
     def funk(event=None):
         try:
             g = int(ent.get())
-            lkj.config(text="The degree of polynomial is " + str(g) + '.')
+            values = [i+1 for i in range(g)]
+
+            lkj.config(text="The degree of the polynomial is " + str(g) + '.')
         except ValueError:
             messagebox.showerror('ValueError', 'Degree of a polynomial\nis a integer number.')
 
