@@ -166,7 +166,7 @@ phy = Button(main_win, text='Other', fg='yellow', bg='deep sky blue', width=8,
              justify='center', activebackground='powder blue', command=pysco)
 phy.place(x=290, y=300)
 
-photo = PhotoImage(file=r"images\exit.png")
+photo = PhotoImage(file=r"images/exit.png")
 photoimage = photo.subsample(1, 1)
 qu = Button(main_win, text='Exit', image=photoimage, bg='salmon', fg='yellow',
             compound=LEFT, command=main_win.destroy)
